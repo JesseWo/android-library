@@ -97,6 +97,8 @@ services:
       - su www-data -c "php /var/www/html/occ group:add users"
       - su www-data -c "php /var/www/html/occ group:adduser users user1"
       - su www-data -c "php /var/www/html/occ group:adduser users user2"
+      - su www-data -c "git clone -b enh/noid/direct-editing https://github.com/nextcloud/text.git /var/www/html/apps/text/"
+      - su www-data -c "php /var/www/html/occ app:enable text"
       - /run.sh
 
 trigger:

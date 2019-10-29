@@ -24,6 +24,8 @@
  */
 package com.owncloud.android.lib.resources.status;
 
+import com.owncloud.android.lib.common.DirectEditing;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,6 +108,9 @@ public class OCCapability {
     
     private CapabilityBooleanType extendedSupport;
 
+    // DirectEditing
+    private DirectEditing directEditing;
+
     public OCCapability() {
         id = 0;
         accountName = "";
@@ -162,6 +167,8 @@ public class OCCapability {
         richDocumentsProductName = "Collabora Online";
         
         extendedSupport = CapabilityBooleanType.UNKNOWN;
+
+        directEditing = new DirectEditing();
     }
 
     public OwnCloudVersion getVersion() {

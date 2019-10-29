@@ -27,6 +27,8 @@ package com.owncloud.android.lib.resources.status;
 
 import android.net.Uri;
 
+import com.google.gson.Gson;
+import com.owncloud.android.lib.common.DirectEditing;
 import com.owncloud.android.lib.common.OwnCloudClient;
 import com.owncloud.android.lib.common.operations.RemoteOperation;
 import com.owncloud.android.lib.common.operations.RemoteOperationResult;
@@ -140,6 +142,9 @@ public class GetCapabilitiesRemoteOperation extends RemoteOperation {
     private static final String NODE_RICHDOCUMENTS_TEMPLATES = "templates";
     private static final String NODE_RICHDOCUMENTS_PRODUCT_NAME = "productName";
 
+    // DirectEditing
+    private static final String NODE_DIRECT_EDITING = "directEditing";
+        
     // activity
     private static final String NODE_ACTIVITY = "activity";
 
@@ -298,6 +303,12 @@ public class GetCapabilitiesRemoteOperation extends RemoteOperation {
                             if (respFiles.has(PROPERTY_VERSIONING)) {
                                 capability.setFilesVersioning(CapabilityBooleanType.fromBooleanValue(
                                         respFiles.getBoolean(PROPERTY_VERSIONING)));
+                            }
+
+                            // direct editing
+                            if (respFiles.has(NODE_DIRECT_EDITING)) {
+                                capability.setDirectEditing(new Gson().fromJson(respFiles.getString("directEditing"),
+                                        DirectEditing.class));
                             }
 
                             Log_OC.d(TAG, "*** Added " + NODE_FILES);
