@@ -45,6 +45,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Editor {
+    public String id;
     public String name;
     public ArrayList<String> mimetypes;
     public ArrayList<String> optionalMimetypes;
