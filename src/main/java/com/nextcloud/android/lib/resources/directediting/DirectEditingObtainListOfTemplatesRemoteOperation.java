@@ -38,10 +38,13 @@ import com.owncloud.android.lib.resources.OCSRemoteOperation;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.GetMethod;
 
+import lombok.AllArgsConstructor;
+
 /**
  * Get templates for an editor
  */
 
+@AllArgsConstructor
 public class DirectEditingObtainListOfTemplatesRemoteOperation extends OCSRemoteOperation {
     private static final String TAG = DirectEditingObtainListOfTemplatesRemoteOperation.class.getSimpleName();
     private static final int SYNC_READ_TIMEOUT = 40000;
@@ -52,11 +55,6 @@ public class DirectEditingObtainListOfTemplatesRemoteOperation extends OCSRemote
 
     private String editor;
     private String template;
-
-    public DirectEditingObtainListOfTemplatesRemoteOperation(String editor, String template) {
-        this.editor = editor;
-        this.template = template;
-    }
 
     protected RemoteOperationResult run(OwnCloudClient client) {
         RemoteOperationResult result;

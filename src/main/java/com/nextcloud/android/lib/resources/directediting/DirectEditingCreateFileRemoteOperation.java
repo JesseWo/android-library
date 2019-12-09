@@ -36,10 +36,13 @@ import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.json.JSONObject;
 
+import lombok.AllArgsConstructor;
+
 /**
  * Create file with direct editing api
  */
 
+@AllArgsConstructor
 public class DirectEditingCreateFileRemoteOperation extends RemoteOperation {
     private static final String TAG = DirectEditingCreateFileRemoteOperation.class.getSimpleName();
     private static final int SYNC_READ_TIMEOUT = 40000;
@@ -55,13 +58,6 @@ public class DirectEditingCreateFileRemoteOperation extends RemoteOperation {
 
     public DirectEditingCreateFileRemoteOperation(String path, String editor, String creator) {
         this(path, editor, creator, "");
-    }
-
-    public DirectEditingCreateFileRemoteOperation(String path, String editor, String creator, String template) {
-        this.path = path;
-        this.editor = editor;
-        this.creator = creator;
-        this.template = template;
     }
 
     protected RemoteOperationResult run(OwnCloudClient client) {

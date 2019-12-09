@@ -36,10 +36,13 @@ import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.json.JSONObject;
 
+import lombok.AllArgsConstructor;
+
 /**
  * open file for direct editing
  */
 
+@AllArgsConstructor
 public class DirectEditingOpenFileRemoteOperation extends RemoteOperation {
     private static final String TAG = DirectEditingOpenFileRemoteOperation.class.getSimpleName();
     private static final int SYNC_READ_TIMEOUT = 40000;
@@ -50,11 +53,6 @@ public class DirectEditingOpenFileRemoteOperation extends RemoteOperation {
 
     private String filePath;
     private String editor;
-
-    public DirectEditingOpenFileRemoteOperation(String filePath, String editor) {
-        this.filePath = filePath;
-        this.editor = editor;
-    }
 
     protected RemoteOperationResult run(OwnCloudClient client) {
         RemoteOperationResult result;
