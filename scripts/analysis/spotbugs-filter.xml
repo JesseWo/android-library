@@ -8,6 +8,9 @@
     <Match>
         <Class name="~.*\.R\$.*" />
     </Match>
+    <Match>
+        <Class name="~.*\$\$Parcelable" />
+    </Match>
     <Bug pattern="PATH_TRAVERSAL_IN" />
     <Bug pattern="ANDROID_EXTERNAL_FILE_ACCESS" />
     <Bug pattern="BAS_BLOATED_ASSIGNMENT_SCOPE" />
