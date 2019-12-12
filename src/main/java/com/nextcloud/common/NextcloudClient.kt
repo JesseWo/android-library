@@ -57,7 +57,7 @@ class NextcloudClient(var baseUri: Uri, val context: Context) : OkHttpClient() {
     lateinit var credentials: String
     lateinit var userId: String
     lateinit var request: Request
-    var followRedirects = true;
+    var shouldFollowRedirects = true;
 
     fun execute(remoteOperation: RemoteOperation): RemoteOperationResult {
         return remoteOperation.run(this)

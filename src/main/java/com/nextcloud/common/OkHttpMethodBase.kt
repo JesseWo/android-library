@@ -31,6 +31,7 @@ import com.owncloud.android.lib.common.OwnCloudClientManagerFactory
 import com.owncloud.android.lib.common.operations.RemoteOperation
 import okhttp3.Headers
 import okhttp3.HttpUrl
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.Request
 import okhttp3.Response
 
@@ -49,7 +50,7 @@ abstract class OkHttpMethodBase(var uri: String,
     }
 
     fun buildQueryParameter(): HttpUrl {
-        val httpBuilder = HttpUrl.parse(uri)?.newBuilder() ?: throw IllegalStateException("Error")
+        val httpBuilder = uri.toHttpUrlOrNull()?.newBuilder() ?: throw IllegalStateException("Error")
 
         queryMap.forEach { (k, v) -> httpBuilder.addQueryParameter(k, v) }
 
@@ -61,7 +62,7 @@ abstract class OkHttpMethodBase(var uri: String,
     }
 
     fun getResponseBodyAsString(): String {
-        return response.body()?.string() ?: ""
+        return response.body?.string() ?: ""
     }
 
     fun releaseConnection() {
@@ -69,15 +70,15 @@ abstract class OkHttpMethodBase(var uri: String,
     }
 
     fun getStatusCode(): Int {
-        return response.code()
+        return response.code
     }
 
     fun getStatusText(): String {
-        return response.message()
+        return response.message
     }
 
     fun getResponseHeaders(): Headers {
-        return response.headers()
+        return response.headers
     }
 
     fun getResponseHeader(name: String): String? {
@@ -100,10 +101,10 @@ abstract class OkHttpMethodBase(var uri: String,
 
         response = nextcloudClient.newCall(request).execute()
 
-        if (nextcloudClient.followRedirects) {
+        if (nextcloudClient.shouldFollowRedirects) {
             return nextcloudClient.followRedirection(this).getLastStatus()
         } else {
-            return response.code()
+            return response.code
         }
     }
 }
